@@ -1,0 +1,5 @@
+tensorboardX
+easydict
+tqdm
+torch==1.0.1
+torchvision
