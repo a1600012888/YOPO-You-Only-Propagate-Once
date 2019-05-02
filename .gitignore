@@ -1,0 +1,11 @@
+*.checkpoint*
+**data/
+*__pycache__*
+*mig*
+**ttt*/
+**/*mig*/
+**log/**
+**/log/**
+*events*
+*.txt
+
