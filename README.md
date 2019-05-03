@@ -1,5 +1,5 @@
 # YOPO(You Only Propagate Once: Painless Adversarial Training Using Maximal Principle)
-Code for our paper: "You Only Propagate Once: Painless Adversarial Training Using Maximal Principle" by Dinghuai Zhang, [Tianyuan Zhang](http://tianyuanzhang.com), [Yiping Lu](https://web.stanford.edu/~yplu/), Zhanxing Zhu, Bin Dong.
+Code for our [paper](https://arxiv.org/abs/1905.00877): "You Only Propagate Once: Painless Adversarial Training Using Maximal Principle" by Dinghuai Zhang, [Tianyuan Zhang](http://tianyuanzhang.com), [Yiping Lu](https://web.stanford.edu/~yplu/), Zhanxing Zhu, Bin Dong.
 
 
 ## Prerequisites
