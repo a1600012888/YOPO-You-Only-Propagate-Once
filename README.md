@@ -37,7 +37,10 @@ Runing this code for the first time will dowload the dataset in `./experiments/C
 
 
 ## Experiment results
-![](/mnist_time_k5i10_pgd40_iter20.jpg)![](/cifar10_time_k5i3_pgd10.jpg)
+<center class="half">
+    <img src="https://s2.ax1x.com/2019/05/16/EbamrT.jpg" width="300"/>
+    <img src="https://s2.ax1x.com/2019/05/16/EbatsK.jpg" width="300"/>
+</center>
 
 
 ## Miscellaneous
