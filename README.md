@@ -1,7 +1,7 @@
 # YOPO(You Only Propagate Once: Accelerating Adversarial Training via Maximal Principle)
 Code for our [paper](https://arxiv.org/abs/1905.00877): "You Only Propagate Once: Accelerating Adversarial Training via Maximal Principle" by Dinghuai Zhang, [Tianyuan Zhang](http://tianyuanzhang.com), [Yiping Lu](https://web.stanford.edu/~yplu/), Zhanxing Zhu, Bin Dong.
 
-![The Pipeline of YOPO](/pipeline_crop.jpg)
+![The Pipeline of YOPO](/pipeline.jpg)
 
 
 ## Prerequisites
