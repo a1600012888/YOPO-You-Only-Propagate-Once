@@ -1,6 +1,8 @@
 # YOPO(You Only Propagate Once: Accelerating Adversarial Training via Maximal Principle)
 Code for our [paper](https://arxiv.org/abs/1905.00877): "You Only Propagate Once: Accelerating Adversarial Training via Maximal Principle" by Dinghuai Zhang, [Tianyuan Zhang](http://tianyuanzhang.com), [Yiping Lu](https://web.stanford.edu/~yplu/), Zhanxing Zhu, Bin Dong.
 
+![The Pipeline of YOPO](/pipeline_crop.jpg)
+
 
 ## Prerequisites
 * Pytorch==1.0.1, torchvision
@@ -38,5 +40,5 @@ Runing this code for the first time will dowload the dataset in `./experiments/C
 A tensorflow implementation provided by [Runtian Zhai](http://www.runtianz.cn/) is provided
  [here](https://colab.research.google.com/drive/1hglbkT4Tzf8BOkvX185jFmAND9M67zoZ#scrollTo=OMyffsWl1b4y).
 The implemetation of the ["For Free"](https://arxiv.org/abs/1904.12843) paper is also included. It turns out that our 
-YOPO is faster than "For Free".
+YOPO is faster than "For Free" (detailed results will come soon). 
 Thanks for Runtian's help!
