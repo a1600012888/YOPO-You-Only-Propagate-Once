@@ -35,8 +35,13 @@ run `python train.py -d <whcih_gpu>`
 You can change all the hyper-parameters in `config.py`. And change network in `network.py`
 Runing this code for the first time will dowload the dataset in `./experiments/CIFAR10/data/`, you can modify the path in `dataset.py`
 
+<!--
+## Experiment results
 
-
+<center class="half">
+    <img src="https://s2.ax1x.com/2019/05/16/EbamrT.jpg" width="300"/><img src="https://s2.ax1x.com/2019/05/16/EbatsK.jpg" width="300"/>
+</center>
+-->
 
 ## Miscellaneous
 A tensorflow implementation provided by [Runtian Zhai](http://www.runtianz.cn/) is provided
