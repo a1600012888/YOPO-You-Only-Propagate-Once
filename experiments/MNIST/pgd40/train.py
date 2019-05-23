@@ -6,13 +6,8 @@ from utils.misc import save_args, save_checkpoint, load_checkpoint
 from training.train import train_one_epoch, eval_one_epoch
 
 import torch
-import json
-import numpy as np
-from tensorboardX import SummaryWriter
-import argparse
 
 import os
-from collections import OrderedDict
 
 DEVICE = torch.device('cuda:{}'.format(args.d))
 torch.backends.cudnn.benchmark = True

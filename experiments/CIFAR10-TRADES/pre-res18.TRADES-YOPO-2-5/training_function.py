@@ -3,6 +3,7 @@ import torch.nn as nn
 from config import config
 
 from loss import Hamiltonian, cal_l2_norm
+import torch.nn.functional as F
 
 from utils.misc import torch_accuracy, AvgMeter
 from collections import OrderedDict
@@ -23,7 +24,6 @@ class FastGradientLayerOneTrainer(object):
     def step(self, inp, p, eta):
         '''
         Perform Iterative Sign Gradient on eta
-
         ret: inp + eta
         '''
 
@@ -34,8 +34,8 @@ class FastGradientLayerOneTrainer(object):
             tmp_inp = torch.clamp(tmp_inp, 0, 1)
             H = self.Hamiltonian_func(tmp_inp, p)
 
-            eta_grad_sign = torch.autograd.grad(H, eta, only_inputs=True, retain_graph=False)[0].sign()
-
+            eta_grad = torch.autograd.grad(H, eta, only_inputs=True, retain_graph=False)[0]
+            eta_grad_sign = eta_grad.sign()
             eta = eta - eta_grad_sign * self.sigma
 
             eta = torch.clamp(eta, -1.0 * self.eps, self.eps)
@@ -44,82 +44,88 @@ class FastGradientLayerOneTrainer(object):
             eta.requires_grad_()
             eta.retain_grad()
 
-        #self.param_optimizer.zero_grad()
 
         yofo_inp = eta + inp
         yofo_inp = torch.clamp(yofo_inp, 0, 1)
-
-        loss = -1.0 * self.Hamiltonian_func(yofo_inp, p)
+        loss = -1.0 * (self.Hamiltonian_func(yofo_inp, p) -
+                       config.weight_decay * cal_l2_norm(self.Hamiltonian_func.layer))
 
         loss.backward()
-        #self.param_optimizer.step()
-        #self.param_optimizer.zero_grad()
+
 
         return yofo_inp, eta
-
-
 
 
 def train_one_epoch(net, batch_generator, optimizer,
                     criterion, LayerOneTrainner, K,
                     DEVICE=torch.device('cuda:0'),descrip_str='Training'):
-    '''
 
-    :param attack_freq:  Frequencies of training with adversarial examples. -1 indicates natural training
-    :param AttackMethod: the attack method, None represents natural training
-    :return:  None    #(clean_acc, adv_acc)
-    '''
     net.train()
     pbar = tqdm(batch_generator)
     yofoacc = -1
-    cleanacc = -1
-    cleanloss = -1
     pbar.set_description(descrip_str)
+
+    trades_criterion = torch.nn.KLDivLoss(size_average=False) #.to(DEVICE)
+
     for i, (data, label) in enumerate(pbar):
         data = data.to(DEVICE)
         label = label.to(DEVICE)
 
-        eta = torch.FloatTensor(*data.shape).uniform_(-config.eps, config.eps)
-        eta = eta.to(label.device)
+        net.eval()
+        eta = 0.001 * torch.randn(data.shape).cuda().detach().to(DEVICE)
+
         eta.requires_grad_()
 
-        optimizer.zero_grad()
-        LayerOneTrainner.param_optimizer.zero_grad()
 
+        raw_soft_label = F.softmax(net(data), dim=1).detach()
         for j in range(K):
-            pbar_dic = OrderedDict()
-            TotalLoss = 0
-
             pred = net(data + eta.detach())
 
-            loss = criterion(pred, label)
-            TotalLoss = TotalLoss + loss
-            wgrad = net.conv1.weight.grad
-            TotalLoss.backward()
-            net.conv1.weight.grad = wgrad
+            with torch.enable_grad():
+                loss = trades_criterion(F.log_softmax(pred, dim = 1), raw_soft_label)#raw_soft_label.detach())
 
+            p = -1.0 * torch.autograd.grad(loss, [net.layer_one_out, ])[0]
 
-            p = -1.0 * net.layer_one_out.grad
             yofo_inp, eta = LayerOneTrainner.step(data, p, eta)
 
             with torch.no_grad():
-                if j == 0:
-                    acc = torch_accuracy(pred, label, (1,))
-                    cleanacc = acc[0].item()
-                    cleanloss = loss.item()
 
                 if j == K - 1:
                     yofo_pred = net(yofo_inp)
+                    yofo_loss = criterion(yofo_pred, label)
                     yofoacc = torch_accuracy(yofo_pred, label, (1,))[0].item()
+
+
+        net.train()
+
+        optimizer.zero_grad()
+        LayerOneTrainner.param_optimizer.zero_grad()
+
+        raw_pred = net(data)
+        acc = torch_accuracy(raw_pred, label, (1,))
+        clean_acc = acc[0].item()
+        clean_loss = criterion(raw_pred, label)
+
+
+        adv_pred = net(torch.clamp(data + eta.detach(), 0.0, 1.0))
+        kl_loss = trades_criterion(F.log_softmax(adv_pred, dim=1),
+                                    F.softmax(raw_pred, dim=1)) / data.shape[0]
+
+        loss = clean_loss + kl_loss
+        loss.backward()
 
         optimizer.step()
         LayerOneTrainner.param_optimizer.step()
+
         optimizer.zero_grad()
         LayerOneTrainner.param_optimizer.zero_grad()
-        pbar_dic['Acc'] = '{:.2f}'.format(cleanacc)
-        pbar_dic['loss'] = '{:.2f}'.format(cleanloss)
+
+        pbar_dic = OrderedDict()
+        pbar_dic['Acc'] = '{:.2f}'.format(clean_acc)
+        pbar_dic['cleanloss'] = '{:.3f}'.format(clean_loss.item())
+        pbar_dic['klloss'] = '{:.3f}'.format(kl_loss.item())
         pbar_dic['YofoAcc'] = '{:.2f}'.format(yofoacc)
+        pbar_dic['Yofoloss'] = '{:.3f}'.format(yofo_loss.item())
         pbar.set_postfix(pbar_dic)
 
-    return cleanacc, yofoacc
-
+    return clean_acc, yofoacc

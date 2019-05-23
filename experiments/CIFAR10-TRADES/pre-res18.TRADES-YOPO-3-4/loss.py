@@ -30,6 +30,8 @@ class CrossEntropyWithWeightPenlty(_Loss):
 
     def __call__(self, pred, label):
         cross_loss = self.criterion(pred, label)
+
+
         weight_loss = cal_l2_norm(self.module)
 
         loss = cross_loss + self.reg_cof * weight_loss

@@ -11,13 +11,11 @@ class Hamiltonian(_Loss):
         self.layer = layer
         self.reg_cof = 0
 
-
     def forward(self, x, p):
 
         y = self.layer(x)
         H = torch.sum(y * p)
         return H
-
 
 
 class CrossEntropyWithWeightPenlty(_Loss):
@@ -34,6 +32,7 @@ class CrossEntropyWithWeightPenlty(_Loss):
 
         loss = cross_loss + self.reg_cof * weight_loss
         return loss
+
 
 def cal_l2_norm(layer: torch.nn.Module):
  loss = 0.
