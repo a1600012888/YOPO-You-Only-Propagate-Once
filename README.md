@@ -52,3 +52,13 @@ A tensorflow implementation provided by [Runtian Zhai](http://www.runtianz.cn/) 
 The implemetation of the ["For Free"](https://arxiv.org/abs/1904.12843) paper is also included. It turns out that our 
 YOPO is faster than "For Free" (detailed results will come soon). 
 Thanks for Runtian's help!
+
+## Cite
+```
+@article{zhang2019you,
+  title={You Only Propagate Once: Accelerating Adversarial Training via Maximal Principle},
+  author={Zhang, Dinghuai and Zhang, Tianyuan and Lu, Yiping and Zhu, Zhanxing and Dong, Bin},
+  journal={arXiv preprint arXiv:1905.00877},
+  year={2019}
+}
+```
