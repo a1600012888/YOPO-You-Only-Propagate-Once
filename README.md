@@ -1,5 +1,5 @@
 # YOPO (You Only Propagate Once: Accelerating Adversarial Training via Maximal Principle)
-Code for our [paper](https://arxiv.org/abs/1905.00877): "You Only Propagate Once: Accelerating Adversarial Training via Maximal Principle" by Dinghuai Zhang, [Tianyuan Zhang](http://tianyuanzhang.com), [Yiping Lu](https://web.stanford.edu/~yplu/), Zhanxing Zhu, Bin Dong.
+Code for our [paper](https://arxiv.org/abs/1905.00877): "You Only Propagate Once: Accelerating Adversarial Training via Maximal Principle" by [Dinghuai Zhang](https://scholar.google.com/citations?view_op=list_works&hl=zh-CN&user=8W-MW9sAAAAJ), [Tianyuan Zhang](http://tianyuanzhang.com), [Yiping Lu](https://web.stanford.edu/~yplu/), [Zhanxing Zhu](https://sites.google.com/view/zhanxingzhu/), [Bin Dong](http://bicmr.pku.edu.cn/~dongbin/).
 
 ![The Pipeline of YOPO](/images/pipeline.jpg)
 
@@ -52,3 +52,13 @@ A tensorflow implementation provided by [Runtian Zhai](http://www.runtianz.cn/) 
 The implemetation of the ["For Free"](https://arxiv.org/abs/1904.12843) paper is also included. It turns out that our 
 YOPO is faster than "For Free" (detailed results will come soon). 
 Thanks for Runtian's help!
+
+## Cite
+```
+@article{zhang2019you,
+  title={You Only Propagate Once: Accelerating Adversarial Training via Maximal Principle},
+  author={Zhang, Dinghuai and Zhang, Tianyuan and Lu, Yiping and Zhu, Zhanxing and Dong, Bin},
+  journal={arXiv preprint arXiv:1905.00877},
+  year={2019}
+}
+```
