@@ -14,6 +14,7 @@ import math
 
 
 class BasicBlock(nn.Module):
+
     def __init__(self, in_planes, out_planes, stride, dropRate=0.0):
         super(BasicBlock, self).__init__()
         self.bn1 = nn.BatchNorm2d(in_planes)
@@ -101,7 +102,7 @@ class WideResNet(nn.Module):
                 m.bias.data.zero_()
         '''
 
-    def forward(self, x, ret_cls1 = True):
+    def forward(self, x, ret_cls1=True):
         out = self.conv1(x)
         self.layer_one_out = out
         self.layer_one_out.requires_grad_()
@@ -116,10 +117,12 @@ class WideResNet(nn.Module):
         y = self.fc(out)
         return y
 
+
 def create_network():
     net = WideResNet()
 
     return net
+
 
 if __name__ == '__main__':
     net = create_network()
