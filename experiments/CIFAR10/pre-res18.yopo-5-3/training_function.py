@@ -96,10 +96,10 @@ def train_one_epoch(net, batch_generator, optimizer,
 
             loss = criterion(pred, label)
             TotalLoss = TotalLoss + loss
-            wgrad = net.conv1.weight.grad
+#             wgrad = net.conv1.weight.grad
             #bgrad = net.conv1.bias.grad
             TotalLoss.backward()
-            net.conv1.weight.grad = wgrad
+#             net.conv1.weight.grad = wgrad
             #net.conv1.bias.grad = bgrad
             #param = next(net.parameters())
             #grad_mean = torch.mean(param.grad)
