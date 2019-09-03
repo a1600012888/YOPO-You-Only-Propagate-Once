@@ -34,7 +34,7 @@ class TrainingConfing(TrainingConfigBase):
     sigma = 0.01
     eps = 0.3
 
-    create_optimizer = SGDOptimizerMaker(lr =1e-1 / K, momentum = 0.9, weight_decay = weight_decay)
+    create_optimizer = SGDOptimizerMaker(lr =1e-2 / K, momentum = 0.9, weight_decay = weight_decay)
     create_lr_scheduler = PieceWiseConstantLrSchedulerMaker(milestones = [30, 35, 39], gamma = 0.1)
 
     create_loss_function = None
