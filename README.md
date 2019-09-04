@@ -1,5 +1,5 @@
 # YOPO (You Only Propagate Once: Accelerating Adversarial Training via Maximal Principle)
-Code for our [paper](https://arxiv.org/abs/1905.00877): "You Only Propagate Once: Accelerating Adversarial Training via Maximal Principle" by [Dinghuai Zhang](https://scholar.google.com/citations?view_op=list_works&hl=zh-CN&user=8W-MW9sAAAAJ), [Tianyuan Zhang](http://tianyuanzhang.com), [Yiping Lu](https://web.stanford.edu/~yplu/), [Zhanxing Zhu](https://sites.google.com/view/zhanxingzhu/), [Bin Dong](http://bicmr.pku.edu.cn/~dongbin/).
+Code for our **NeurIPS2019** [paper](https://arxiv.org/abs/1905.00877): "You Only Propagate Once: Accelerating Adversarial Training via Maximal Principle" by [Dinghuai Zhang](https://scholar.google.com/citations?view_op=list_works&hl=zh-CN&user=8W-MW9sAAAAJ), [Tianyuan Zhang](http://tianyuanzhang.com), [Yiping Lu](https://web.stanford.edu/~yplu/), [Zhanxing Zhu](https://sites.google.com/view/zhanxingzhu/), [Bin Dong](http://bicmr.pku.edu.cn/~dongbin/).
 
 ![The Pipeline of YOPO](/images/pipeline.jpg)
 
@@ -45,7 +45,7 @@ Runing this code for the first time will dowload the dataset in `./experiments/C
 
 ## Miscellaneous
 The mainbody of `experiments/CIFAR10-TRADES/baseline.res-pre18.TRADES.10step` is written according to 
-[TRADES official repo](https://github.com/yaodongyu/TRADES).
+[TRADES official repo](https://github.com/yaodongyu/TRADES)
 
 A tensorflow implementation provided by [Runtian Zhai](http://www.runtianz.cn/) is provided
  [here](https://colab.research.google.com/drive/1hglbkT4Tzf8BOkvX185jFmAND9M67zoZ#scrollTo=OMyffsWl1b4y).
