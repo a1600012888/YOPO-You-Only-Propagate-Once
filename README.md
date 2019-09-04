@@ -1,5 +1,7 @@
 # YOPO (You Only Propagate Once: Accelerating Adversarial Training via Maximal Principle)
-Code for our **NeurIPS2019** [paper](https://arxiv.org/abs/1905.00877): "You Only Propagate Once: Accelerating Adversarial Training via Maximal Principle" by [Dinghuai Zhang](https://scholar.google.com/citations?view_op=list_works&hl=zh-CN&user=8W-MW9sAAAAJ), [Tianyuan Zhang](http://tianyuanzhang.com), [Yiping Lu](https://web.stanford.edu/~yplu/), [Zhanxing Zhu](https://sites.google.com/view/zhanxingzhu/), [Bin Dong](http://bicmr.pku.edu.cn/~dongbin/).
+Code for our  [paper](https://arxiv.org/abs/1905.00877): "You Only Propagate Once: Accelerating Adversarial Training via Maximal Principle" by [Dinghuai Zhang](https://scholar.google.com/citations?view_op=list_works&hl=zh-CN&user=8W-MW9sAAAAJ), [Tianyuan Zhang](http://tianyuanzhang.com), [Yiping Lu](https://web.stanford.edu/~yplu/), [Zhanxing Zhu](https://sites.google.com/view/zhanxingzhu/), [Bin Dong](http://bicmr.pku.edu.cn/~dongbin/).
+
+Our paper has been accepted by **NeurIPS2019**.
 
 ![The Pipeline of YOPO](/images/pipeline.jpg)
 
