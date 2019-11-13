@@ -10,7 +10,7 @@ from training_function import train_one_epoch, FastGradientLayerOneTrainer
 import torch
 import json
 import numpy as np
-from tensorboardX import SummaryWriter
+# from tensorboardX import SummaryWriter
 
 
 import torch.nn as nn
@@ -21,7 +21,7 @@ import time
 DEVICE = torch.device('cuda:{}'.format(args.d))
 torch.backends.cudnn.benchmark = True
 
-writer = SummaryWriter(log_dir=config.log_dir)
+# writer = SummaryWriter(log_dir=config.log_dir)
 
 net = create_network()
 net.to(DEVICE)
@@ -66,11 +66,12 @@ while True:
     now_train_time = now_train_time + time.time() - s_time
     tb_train_dic = {'Acc':acc, 'YofoAcc':yofoacc}
     print(tb_train_dic)
-    writer.add_scalars('Train', tb_train_dic, now_epoch)
+
+    # writer.add_scalars('Train', tb_train_dic, now_epoch)
     if config.val_interval > 0 and now_epoch % config.val_interval == 0:
         acc, advacc = eval_one_epoch(net, ds_val, DEVICE, EvalAttack)
         tb_val_dic = {'Acc': acc, 'AdvAcc': advacc}
-        writer.add_scalars('Val', tb_val_dic, now_epoch)
+        # writer.add_scalars('Val', tb_val_dic, now_epoch)
         tb_val_dic['time'] = now_train_time
         log_str = json.dumps(tb_val_dic)
         with open('time.log', 'a') as f:
