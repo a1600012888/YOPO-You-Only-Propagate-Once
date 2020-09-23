@@ -46,6 +46,8 @@ Runing this code for the first time will dowload the dataset in `./experiments/C
 -->
 
 ## Miscellaneous
+A C++ implementation by [Nitin Shyamkumar](https://scholar.google.com/citations?user=lF0ZyBQAAAAJ&hl=en) is provided [here](https://github.com/nitinshyamk/yopo-inference)! Thank you Nitin for your work!
+
 The mainbody of `experiments/CIFAR10-TRADES/baseline.res-pre18.TRADES.10step` is written according to 
 [TRADES official repo](https://github.com/yaodongyu/TRADES)
 
@@ -54,6 +56,7 @@ A tensorflow implementation provided by [Runtian Zhai](http://www.runtianz.cn/) 
 The implemetation of the ["For Free"](https://arxiv.org/abs/1904.12843) paper is also included. It turns out that our 
 YOPO is faster than "For Free" (detailed results will come soon). 
 Thanks for Runtian's help!
+
 
 ## Cite
 ```
